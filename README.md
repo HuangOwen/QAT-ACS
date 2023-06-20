@@ -1,6 +1,6 @@
 # QAT-ACS: Efficient Quantization-aware Training with Adaptive Coreset Selection 
 
-This is the pytorch implementation of our paper "Efficient Quantization-aware Training with Adaptive Coreset Selection" [[Paper]]()
+This is the pytorch implementation of our paper "Efficient Quantization-aware Training with Adaptive Coreset Selection" [[Paper]](https://arxiv.org/abs/2306.07215)
 
 ## Introduction
 In this work, we propose a new angle through the coreset selection to improve the training efficiency of quantization-aware training. Our method can achieve an accuracy of 68.39% of 4-bit quantized ResNet-18 on the ImageNet-1K dataset with only a 10% subset, which has an absolute gain of 4.24% compared to the previous SoTA.
