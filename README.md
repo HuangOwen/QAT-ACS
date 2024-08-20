@@ -1,4 +1,4 @@
-# QAT-ACS: Efficient Quantization-aware Training with Adaptive Coreset Selection [Paper]
+# QAT-ACS: Efficient Quantization-aware Training with Adaptive Coreset Selection (TMLR) [[Paper]](https://arxiv.org/abs/2306.07215) [[OpenReview]](https://openreview.net/forum?id=4c2pZzG94y)
 
 
 ## Introduction
