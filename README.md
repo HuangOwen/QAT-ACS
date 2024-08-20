@@ -1,8 +1,9 @@
 # QAT-ACS: Efficient Quantization-aware Training with Adaptive Coreset Selection (TMLR) [[Paper]](https://arxiv.org/abs/2306.07215) [[OpenReview]](https://openreview.net/forum?id=4c2pZzG94y)
 
+This is the pytorch implementation of our paper "Efficient Quantization-aware Training with Adaptive Coreset Selection" [[Paper]](https://arxiv.org/abs/2306.07215)
 
 ## Introduction
-The expanding model size and computation of deep neural networks (DNNs) have increased the demand for efficient model deployment methods. Quantization-aware training (QAT) is a representative model compression method to leverage redundancy in weights and activations. However, most existing QAT methods require end-to-end training on the entire dataset, which suffers from long training time and high energy costs. Coreset selection, aiming to improve data efficiency utilizing the redundancy of training data, has also been widely used for efficient training. In this work, we propose a new angle through the coreset selection to improve the training efficiency of quantization-aware training. Based on the characteristics of QAT, we propose two metrics: error vector score and disagreement score, to quantify the importance of each sample during training. Guided by these two metrics of importance, we proposed a quantization-aware adaptive coreset selection (ACS) method to select the data for the current training epoch. We evaluate our method on various networks (ResNet-18, MobileNetV2), datasets(CIFAR-100, ImageNet-1K), and under different quantization settings. Compared with previous coreset selection methods, our method significantly improves QAT performance with different dataset fractions. %and provides a strong baseline for future research. Our method can achieve an accuracy of 68.39\% of 4-bit quantized ResNet-18 on the ImageNet-1K dataset with only a 10\% subset, which has an absolute gain of 4.24\% compared to the baseline.  
+In this work, we propose a new angle through the coreset selection to improve the training efficiency of quantization-aware training. Our method can achieve an accuracy of 68.39% of 4-bit quantized ResNet-18 on the ImageNet-1K dataset with only a 10% subset, which has an absolute gain of 4.24% compared to the previous SoTA.
 
 
 ## Datasets and Models
@@ -12,11 +13,17 @@ For dataset, we have evaluate our method on ImageNet-1K and CIFAR-100. There are
 
 ### ResNet-18 on ImageNet-1K (4-bit W/A Quantization)
 
-![results-resnet](./imgs/results-resnet.jpg)
+
+<div align=center>
+<img width=60% src="./imgs/results-resnet.jpg"/>
+</div>
 
 ### MobileNet-V2 on CIFAR-100 (2-bit W Quantization)
 
-![results-mobilenet](./imgs/results-mobilenet.jpg)
+
+<div align=center>
+<img width=60% src="./imgs/results-mobilenet.jpg"/>
+</div>
 
 ## Run
 
@@ -37,7 +44,7 @@ CUDA_VISIBLE_DEVICES=0,1 python main.py --fraction 0.1 --dataset ImageNet --data
 
 QAT of 2-bit MobileNetV2 with our ACS and training on the CIFAR-100 coreset with fraction 0.1 (repeat 5 times).
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --fraction 0.1 --dataset CIFAR100 --model QMobilenetv2 --selection ACS --num_exp 5 --epochs 200 --min_lr 0  --lr 0.01 --weight_decay 5e-4 --batch-size 256 --scheduler LambdaLR --resume ./pretrained_model/CIFAR100_Mobilenetv2_72.56.ckpt --bitwidth 2 --log ./logs/lsq_2bit_mobilenetv2_cifar100_ACS10new.log
+CUDA_VISIBLE_DEVICES=0 python main.py --fraction 0.1 --dataset CIFAR100 --model QMobilenetv2 --selection ACS --num_exp 5 --epochs 200 --min_lr 0  --lr 0.01 --weight_decay 5e-4 --batch-size 256 --scheduler LambdaLR --adaptive cosine --resume ./pretrained_model/CIFAR100_Mobilenetv2_72.56.ckpt --bitwidth 2 --log ./logs/lsq_2bit_mobilenetv2_cifar100_ACS10new.log
 ```
 
 ### Additional Dataset and Model
